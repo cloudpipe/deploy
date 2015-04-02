@@ -1,0 +1,5 @@
+[api_nodes]
+api01.cloudpi.pe ansible_ssh_user=root ansible_ssh_host=<public_ip>
+
+[job_nodes]
+jobs001.cloudpi.pe ansible_ssh_user=root ansible_ssh_host=<public_ip>
