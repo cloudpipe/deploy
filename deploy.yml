@@ -3,7 +3,6 @@
   - api_nodes
   - job_nodes
   vars_files:
-  - 'secrets.vault.yml'
   - ['vars.local.yml', 'vars.yml']
   roles:
   - common
@@ -11,16 +10,10 @@
 
 - hosts:
   - api_nodes
-  vars_files:
-  - 'secrets.vault.yml'
-  - ['vars.local.yml', 'vars.yml']
   roles:
   - api
 
 - hosts:
   - job_nodes
-  vars_files:
-  - 'secrets.vault.yml'
-  - ['vars.local.yml', 'vars.yml']
   roles:
   - jobs

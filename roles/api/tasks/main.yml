@@ -1,0 +1,21 @@
+---
+
+- name: Cloudpipe API
+  docker:
+    name: cloudpipeapi
+    image: cloudpipe/cloudpipe
+    pull: always
+    state: reloaded
+    env:
+      PIPE_ADMINNAME: "{{ cloudpipe_admin }}"
+      PIPE_ADMINKEY: "{{ cloudpipe_admin_key }}"
+      PIPE_LOGLEVEL: "{{ cloudpipe_log_level }}"
+      PIPE_LOGCOLORS: true
+      PIPE_CACERT: "{{ cloudpipe_cacert }}"
+      PIPE_CERT: "{{ cloudpipe_cert }}"
+      PIPE_KEY: "{{ cloudpipe_key }}"
+      PIPE_AUTHSERVICE: "{{ cloudpipe_auth_service_url }}"
+      PIPE_MONGOURL: "{{ cloudpipe_mongo_backend_url }}"
+    ports:
+    - "8000:8000"
+    restart_policy: always
