@@ -3,7 +3,8 @@
   - api_nodes
   - job_nodes
   vars_files:
-  - ['vars.local.yml', 'vars.yml']
+  - ['secrets.yml', 'secrets.vault.yml']
+  - ['vars.local.yml', 'vars.yml', 'secrets.yml']
   roles:
   - common
   - docker
