@@ -62,3 +62,6 @@ inventory
 secrets.yml
 certificates
 vault-password
+
+
+secrets.*.yml

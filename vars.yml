@@ -3,3 +3,5 @@ github_usernames:
 - rgbkrk
 - smashwilson
 - jrperritt
+
+docker_image: cloudpipe/runner-py2
