@@ -12,6 +12,7 @@
 - hosts:
   - api_nodes
   vars_files:
+  - ['secrets.yml', 'secrets.vault.yml']
   - ['secrets.api.yml', 'secrets.api.vault.yml']
   - ['vars.local.yml', 'vars.yml']
   roles:
@@ -20,6 +21,7 @@
 - hosts:
   - job_nodes
   vars_files:
+  - ['secrets.yml', 'secrets.vault.yml']
   - ['vars.local.yml', 'vars.yml']
   roles:
   - jobs

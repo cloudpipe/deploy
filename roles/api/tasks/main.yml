@@ -11,9 +11,9 @@
       PIPE_ADMINKEY: "{{ cloudpipe_admin_key }}"
       PIPE_LOGLEVEL: "{{ cloudpipe_log_level }}"
       PIPE_LOGCOLORS: true
-      PIPE_CACERT: "{{ cloudpipe_cacert }}"
-      PIPE_CERT: "{{ cloudpipe_cert }}"
-      PIPE_KEY: "{{ cloudpipe_key }}"
+      PIPE_CACERT: "{{ docker_tls_path }}/ca.pem"
+      PIPE_CERT: "{{ docker_tls_path }}/cert.pem"
+      PIPE_KEY: "{{ docker_tls_path }}/key.pem"
       PIPE_AUTHSERVICE: "{{ cloudpipe_auth_service_url }}"
       PIPE_MONGOURL: "{{ cloudpipe_mongo_backend_url }}"
     ports:
