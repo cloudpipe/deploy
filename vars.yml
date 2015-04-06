@@ -5,3 +5,5 @@ github_usernames:
 - jrperritt
 
 docker_image: cloudpipe/runner-py2
+
+cloudpipe_log_level: debug
