@@ -1,4 +1,37 @@
 ---
+- name: install auth store TLS credentials
+  template: src={{ item.from }} dest={{ item.to }} mode=0644
+  with_items:
+    - from: authstore-key.pem.j2
+      to: "{{ docker_tls_path }}/authstore-key.pem"
+    - from: authstore-cert.pem.j2
+      to: "{{ docker_tls_path }}/authstore-cert.pem"
+    - from: authstore-external-key.pem.j2
+      to: "{{ docker_tls_path }}/external-key.pem"
+    - from: authstore-external-cert.pem.j2
+      to: "{{ docker_tls_path }}/external-cert.pem"
+
+- name: Rackspace Auth Store
+  docker:
+    name: authstore
+    image: "rackerlabs/cloudpipe-rackspace-auth-store"
+    pull: always
+    state: reloaded
+    env:
+      AUTH_LOGLEVEL: "{{ cloudpipe_log_level }}"
+      AUTH_LOGCOLORS: "true"
+      AUTH_INTERNALCACERT: "{{ docker_tls_path }}/ca.pem"
+      AUTH_INTERNALCERT: "{{ docker_tls_path }}/authstore-cert.pem"
+      AUTH_INTERNALKEY: "{{ docker_tls_path }}/authstore-key.pem"
+      AUTH_EXTERNALCERT: "{{ docker_tls_path }}/external-cert.pem"
+      AUTH_EXTERNALKEY: "{{ docker_tls_path }}/external-key.pem"
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+      - "{{ docker_tls_path }}:{{ docker_tls_path }}"
+    expose:
+    - "9001"
+    ports:
+    - "9000:9000"
 
 - name: Cloudpipe API
   docker:
@@ -6,6 +39,8 @@
     image: cloudpipe/cloudpipe
     pull: always
     state: reloaded
+    links:
+      - authstore
     env:
       PIPE_ADMINNAME: "{{ cloudpipe_admin }}"
       PIPE_ADMINKEY: "{{ cloudpipe_admin_key }}"
