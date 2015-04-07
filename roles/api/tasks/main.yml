@@ -53,7 +53,7 @@
       PIPE_AUTHSERVICE: "{{ cloudpipe_auth_service_url }}"
       PIPE_MONGOURL: "{{ cloudpipe_mongo_backend_url }}"
     volumes:
-      - /var/run/docker.sock:/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
       - "{{ docker_tls_path }}:{{ docker_tls_path }}"
     expose:
       - "8000"
