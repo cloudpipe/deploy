@@ -1,2 +1,5 @@
 ---
-- shell: echo 'Job runner not implemented in playbook yet'
+- name: Dummy userspace pull
+  docker:
+    image: "cloudpipe/runner-py2"
+    pull: always
