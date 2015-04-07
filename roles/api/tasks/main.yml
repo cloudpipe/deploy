@@ -29,9 +29,10 @@
       - /var/run/docker.sock:/docker.sock
       - "{{ docker_tls_path }}:{{ docker_tls_path }}"
     expose:
-    - "9001"
+      - "9001"
+      - "9000"
     ports:
-    - "9000:9000"
+      - "9000:9000"
 
 - name: Cloudpipe API
   docker:
@@ -54,6 +55,8 @@
     volumes:
       - /var/run/docker.sock:/docker.sock
       - "{{ docker_tls_path }}:{{ docker_tls_path }}"
+    expose:
+      - "8000"
     ports:
-    - "8000:8000"
+      - "8000:8000"
     restart_policy: always
